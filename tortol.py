@@ -8,16 +8,28 @@ import re
 def showCommand (user_inputs) :
     print(user_inputs.get("1.0", "end"))
 
+# Erase whole canvas canvas.delete("all")
+
 # Global variables
 canvas_height = 500
 canvas_width  = 500 
 canvas_center = [canvas_width/2, canvas_height/2]
+
 
 ## window instance
 top = Tk(className = "Tortuga")
 
 ## drawing canvas
 C = Canvas(top, bg = "white", height = canvas_height, width = canvas_width)
+
+### cursor shape
+
+cursor = create_polygon(cursor_points, fill="orange")
+cursor_size = 10
+cursor_points = [canvas_center[0]+cursor_size, canvas_center[1]+cursor_size, canvas_center-cursor_size[0], 0, canvas_center+cursor_size[0], 0]
+ 
+C.create_polygon(points, outline = "blue", fill = "orange", width = 2)
+
 C.pack()
 
 # label for input
