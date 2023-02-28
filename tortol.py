@@ -2,17 +2,22 @@ from tkinter import *
 import re
 
 ### Using the regex library from python
-pattern = re.compile()
+# pattern = re.compile()
 
 
 def showCommand (user_inputs) :
     print(user_inputs.get("1.0", "end"))
 
-# window instance
-top = Tk()
+# Global variables
+canvas_height = 500
+canvas_width  = 500 
+canvas_center = [canvas_width/2, canvas_height/2]
 
-# drawing canvas
-C = Canvas(top, bg = "white", height = 500, width = 500)
+## window instance
+top = Tk(className = "Tortuga")
+
+## drawing canvas
+C = Canvas(top, bg = "white", height = canvas_height, width = canvas_width)
 C.pack()
 
 # label for input
@@ -28,6 +33,14 @@ sendButton.pack(side = RIGHT)
 
 E1 = Entry(top, bd = 5, textvariable = userInputs)
 E1.pack(side = RIGHT)
+
+## Line coordinates
+x1 = canvas_center[0]
+y1 = canvas_center[1]
+x2 = 0
+y2 = 0
+coordinates = [x1,y1,x2,y2]
+C.create_line(x1,y1,0,10, fill="green")
 
 # window loop
 top.mainloop()

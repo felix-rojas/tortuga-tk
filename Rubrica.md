@@ -6,6 +6,49 @@
 
 - **Portada**
 - Una **lista** con los **elementos del léxico** del lenguaje, incluyendo para cada uno su expresión regular que lo representa utilizando la notación básica.
+
+### Lista de comandos
+
+`ade` 
+Mueve el cursor adelante *n* pixeles
+regex: /ade \d+/
+
+`atr`
+Mueve el cursor atrás *n* pixeles
+regex: /atr \d+/
+
+`der`
+Rota el cursor hacia la derecha *n* grados
+regex: /der \d+/
+
+`izq`
+Rota el cursor hacia la izquierda *n* grados
+regex: /izq \d+/
+
+`cnt`
+Regresa el cursor al centro
+regex: /cnt/
+
+`brr`
+Borra la pantalla
+regex: /brr/
+
+`sid`
+Sí dibuja en la pantalla
+regex: /sid/
+
+`nod`
+No dibuja en la pantalla
+regex: /nod/
+
+`rep`
+Repite la instrucciones
+regex: /rep \[{1}\d+\]{1}/
+
+`col`
+Color *n* donde n va del 1 - 10
+regex: col (10|[1-9])
+
 - El diseño de un **autómata determinístico** que modele el proceso de análisis del léxico del lenguaje según la técnica aprendida en el curso. **Este autómata NO se implementará**, pero su diseño es una práctica importante.
 - El **diseño de los diagramas de sintaxis** y la **gramática BNF que modelen** la sintaxis del lenguaje que utiliza los lexemas previamente diseñados.
 - El **código implementado**, documentado **con** los **comentarios** convenientes para entenderlo.
