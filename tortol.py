@@ -24,11 +24,12 @@ C = Canvas(top, bg = "white", height = canvas_height, width = canvas_width)
 
 ### cursor shape
 
-cursor = create_polygon(cursor_points, fill="orange")
 cursor_size = 10
-cursor_points = [canvas_center[0]+cursor_size, canvas_center[1]+cursor_size, canvas_center-cursor_size[0], 0, canvas_center+cursor_size[0], 0]
+cursor_points = [canvas_center[0] + cursor_size, canvas_center[1] + cursor_size, 
+                canvas_center[0] + cursor_size, canvas_center[0],
+                canvas_center[0] - cursor_size, canvas_center[0]] 
  
-C.create_polygon(points, outline = "blue", fill = "orange", width = 2)
+C.create_polygon(cursor_points, outline = "blue", fill = "orange")
 
 C.pack()
 
