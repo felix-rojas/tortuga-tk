@@ -22,14 +22,12 @@ top = Tk(className = "Tortuga")
 ## drawing canvas
 C = Canvas(top, bg = "white", height = canvas_height, width = canvas_width)
 
-### cursor shape
-
-cursor_size = 10
-cursor_points = [canvas_center[0] + cursor_size, canvas_center[1] + cursor_size, 
-                canvas_center[0] + cursor_size, canvas_center[0],
-                canvas_center[0] - cursor_size, canvas_center[0]] 
- 
-C.create_polygon(cursor_points, outline = "blue", fill = "orange")
+### cursor shape WIP
+# cursor_size = 10
+# cursor_points = [canvas_center[0] + cursor_size, canvas_center[1] + cursor_size, 
+#                 canvas_center[0] + cursor_size, canvas_center[0],
+#                 canvas_center[0] - cursor_size, canvas_center[0]] 
+# C.create_polygon(cursor_points, outline = "blue", fill = "orange")
 
 C.pack()
 
@@ -47,7 +45,7 @@ sendButton.pack(side = RIGHT)
 E1 = Entry(top, bd = 5, textvariable = userInputs)
 E1.pack(side = RIGHT)
 
-## Line coordinates
+## Line coordinates test to define function
 x1 = canvas_center[0]
 y1 = canvas_center[1]
 x2 = 0
