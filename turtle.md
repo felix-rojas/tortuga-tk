@@ -88,7 +88,7 @@ top.mainloop()
 
 ### Lista de comandos a definir
 
-`ade` 
+`ade`
 Mueve el cursor adelante *n* pixeles
 regex: /ade \d+/
 
