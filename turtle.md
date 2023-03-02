@@ -1,4 +1,22 @@
+- [Avance en programación](#avance-en-programación)
+  - [To-do's](#to-dos)
+    - [Lista de comandos a definir](#lista-de-comandos-a-definir)
+- [Secuencias logo-turtle](#secuencias-logo-turtle)
+  - [Letter L](#letter-l)
+  - [Letter T](#letter-t)
+  - [Letter F](#letter-f)
+  - [Labyrinth](#labyrinth)
+  - [Golf](#golf)
+- [square](#square)
+- [pentagon](#pentagon)
+- [hexagon](#hexagon)
+- [double square](#double-square)
+- [flowers](#flowers)
+
+
 # Avance en programación
+
+Gran parte de mi investigación y desarrollo de código se basa en la documentación de tkinter.
 
 ```python
 from tkinter import *
@@ -109,6 +127,8 @@ regex: /rep \[{1}\d+\]{1}/
 `col`
 Color *n* donde n va del 1 - 10
 regex: col (10|[1-9])
+
+---
 
 # Secuencias logo-turtle
 
