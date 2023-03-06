@@ -69,6 +69,7 @@ int filtro (char c)
  case 'd': return 12;
  case ' ':
  case '\0': return 13;
+  default: return 8;
   }
  }
 
