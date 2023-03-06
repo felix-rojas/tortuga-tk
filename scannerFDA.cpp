@@ -1,31 +1,39 @@
-// Este programa implementa el algoritmo de reconocimiento de un lenguaje
-// (entrada) a trav s de un DFA. 
+// FDA language recognition 
+// Modified by Félix Javier Rojas Gallardo
 
-// Constantes binarias: contienen sólo unos y ceros y terminan con la letra B. Nunca comienzan con cero.
-// 1(1|0)*B
-// Comentarios: comienzan con /* y terminan con */ 
-// \/\*
-// conteniendo cualquier caracter entre esos delimitadores.
-// Identificadores abecedarios: son todos las palabras aceptadas por la siguiente expresión regular: ((b|c)a(c|d)a)+ # 
+
+//Matriz de transiciones
+// uint =    101  -> integer without a sign
+// sint =    102  -> integer with a + or - sign
+// float =   103  -> float with a + or - sign or no sign
+// bin =     104  -> any string of 1's and 0's that begins with a 1 and ends with a B
+// comment = 105  -> /*asjkdaslkd*/ any characters in between EXCEPT spaces or newline
+// regex =   106  -> ((b|c)a(c|d)a)+ #
 
 #include <iostream>
-using namespace std;
-//Matriz de transiciones
-//                     1, [2-9] +,-   .    B    0   del  otros 
-int MT[6][8] = /*0*/{{ 1 ,  2 ,  3 , 200, 200,  2 , 200, 200},
-               /*1*/ { 1 ,  2 , 200,  4 ,  5 ,  1 , 102, 200}, //
-               /*2*/ { 2 ,  2 , 200,  4 , 200,  2 , 102, 200},
-               /*3*/ { 3 ,  3 , 200,  4 , 200,  3 , 101, 200},
-               /*4*/ { 4 ,  4 , 200, 200, 200,  4 , 100, 200},
-               /*5*/ {200, 200, 200, 200, 200, 200, 111, 200}};
+#include <fstream>
+#include <string>
+#include <string.h>
 
-//Matriz de transiciones
-// uint = 101
-// sint = 102
-// float = 103
-// bin = 104
-// comment = 105
-// regex = 106
+// file testing
+// text file requires a blank space and return at the end of each instruction
+
+int ReadFile(std::string filename) {
+   std::ifstream datafile(filename);
+   if(!datafile) {
+    std::cerr << "Could not open file" << std::endl;
+    std::cerr << "Error code: " << strerror(errno) << std::endl;
+    return -1;
+   }
+
+   std::string data = "";
+   while (getline(datafile, data))
+   {
+    std::cout << data << std::endl;
+   }
+   datafile.close();
+   return 0;
+}
 //                       1    0  [2-9] +,-   .    B    /    *  othrs  a    b    c    d   del
 int mt[16][14] =/*0*/{ { 5 ,  1 ,  1 ,  4 , 200, 200,  7 , 200, 200, 200,  11, 12,  200, 200}, //done, first input state
                 /*1*/  { 1 ,  1 ,  1 , 200,  2 , 200, 200, 200, 200, 200, 200, 200, 200, 101}, // uint OR float
@@ -76,25 +84,35 @@ int filtro (char c)
  
 int main()
 { 
-  char entrada[80];
-  while (true)
-  {
-  std::cout << "Dame la entrada a evaluar: ";
-  std::cin >> entrada;
+  std::string filename = "./tests.txt";
+  std::ifstream datafile(filename);
+   if(!datafile) {
+    std::cerr << "Could not open file" << std::endl;
+    std::cerr << "Error code: " << strerror(errno) << std::endl;
+    return -1;
+   }
+
+   std::string data = "";
+   while (getline(datafile, data))
+   {
   int i = 0;
   char c;
   int estado = 0;
   while (estado < 100) //Menor 100 porque es cualquier estado que si son aceptables 
-  { c = entrada[i++];
+  { c = data[i++];
     estado = mt[estado][filtro(c)];
-    std::cout << estado << std::endl;
+    // std::cout << estado << std::endl; in case you need to see how it moves through states
     if (estado==101) std::cout << "is uint\n";
       else if (estado==102) std::cout << "is sint\n";
       else if (estado==103) std::cout << "is float\n";
       else if (estado==104) std::cout << "is bin\n";
       else if (estado==105) std::cout << "is comment\n";
       else if (estado==106) std::cout << "is regex\n";
+      else if (estado==200) std::cout << "is error \n";
   }
-  }
-  std::cout<<"Fin del analisis"<<endl;
+
+   }
+   datafile.close();
+   std::cout<<"Fin del analisis"<< std::endl;
+   return 0;
 }
