@@ -1,9 +1,48 @@
 from tkinter import *
+from typing import NamedTuple
 import re
 
-### Using the regex library from python
-# pattern = re.compile()
+class Token(NamedTuple):
+    type: str
+    value: str
+    line: int
+    column: int
 
+def tokenize(code):
+    keywords = {'ade', 'atr', 'izq','der','sid', 'nod', 'brr', 'cnt', 'rep'}
+    token_specification = [
+        ('NUMBER',   r'\d?'),          # Integer
+        ('NEWLINE',  r'\n'),           # Line endings
+        ('SKIP',     r'[ \t]+'),       # Skip over spaces and tabs
+        ('MISMATCH', r'.'),            # Any other character
+    ]
+    tok_regex = '|'.join('(?P<%s>%s)' % pair for pair in token_specification)
+    line_num = 1
+    line_start = 0
+    for mo in re.finditer(tok_regex, code):
+        kind = mo.lastgroup
+        value = mo.group()
+        column = mo.start() - line_start
+        if kind == 'NUMBER':
+            value = int(value)
+        elif kind == 'ID' and value in keywords:
+            kind = value
+        elif kind == 'NEWLINE':
+            line_start = mo.end()
+            line_num += 1
+            continue
+        elif kind == 'SKIP':
+            continue
+        elif kind == 'MISMATCH':
+            raise RuntimeError(f'{value!r} unexpected on line {line_num}')
+        yield Token(kind, value, line_num, column)
+
+statements = '''
+
+'''
+
+for token in tokenize(statements):
+    print(token)
 
 def showCommand (user_inputs) :
     print(user_inputs.get("1.0", "end"))

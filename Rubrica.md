@@ -9,12 +9,14 @@
 
 ### Lista de comandos
 
-`ade` 
+`ade`
 Mueve el cursor adelante *n* pixeles
+EBNF: <ade> ::= "ade " [1-9]+ "\n"
 regex: /ade \d+/
 
 `atr`
 Mueve el cursor atrás *n* pixeles
+EBNF: <atr> ::= "atr " [1-9]+ "\n"
 regex: /atr \d+/
 
 `der`
